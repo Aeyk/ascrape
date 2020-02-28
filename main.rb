@@ -1,30 +1,23 @@
 #!/usr/bin/env ruby
 # coding: utf-8
 
-require 'wombat'
+require 'selenium-webdriver'
 require 'sinatra'
 
+set :port, 8001
+
+driver = Selenium::WebDriver.for :chrome
+driver.navigate.to "https://alibaba.com"
+wait = Selenium::WebDriver::Wait.new timeout: 20
+name = wait.until { 
+   driver.find_elements(:class, "m-r4u-product-item-wrapper")
+}
+
+open('file', 'a') { |f|
+  name.each {|n| f.puts n.attribute 'innerHTML' }
+}
 
 
-
-
-hsh = Wombat.crawl do
-  base_url "https://www.github.com"
-  path "/"
-
-  headline xpath: "//h1"
-  subheading css: "p.alt-lead"
-
-  what_is({ css: ".one-fourth h4" }, :list)
-
-  links do
-    explore xpath: '/html/body/header/div/div/nav[1]/a[4]' do |e|
-      e.gsub(/Explore/, "Love")
-    end
-
-    features css: '.nav-item-opensource'
-    business css: '.nav-item-business'
-  end
+get '/' do
+  File.read("file")
 end
-
-pp hsh

@@ -2,7 +2,7 @@
 
 source "https://rubygems.org"
 
-gem 'watir'
+gem 'selenium-webdriver'
 gem 'pry-doc'
 gem 'pry'
 
