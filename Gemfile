@@ -2,8 +2,8 @@
 
 source "https://rubygems.org"
 
-gem 'childprocess'
-gem 'mechanize'
 gem 'watir'
+gem 'pry-doc'
+gem 'pry'
 
 # gem "rails"
