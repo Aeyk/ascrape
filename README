@@ -1,0 +1,7 @@
+# DEPENDENCIES
+
+To install dependencies run
+#+BEGIN_SRC shell
+bundle install --local
+#+END_SRC
+
